@@ -1,3 +1,13 @@
+*****************versiones*******************
+python 3.9.7 (instalacion de libreria psycopg2)
+django 4.1.5
+postgres 6.18-6.21
+
+********instalacion de psycopg2***************
+~:pip install psycopg2
+
+**********************************************
+
 Usuario administrador: jjiatz
 Contraseña: Dj@ngo20.23
 
@@ -10,6 +20,3 @@ user.email "jjiatzg@miumg.edu.gt"
 repository name: project-inv
 Description: proyectopg
 
-prueba de repositorio
-
-segunda modificacion para prueba

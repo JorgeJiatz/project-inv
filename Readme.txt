@@ -6,7 +6,7 @@ postgres 6.18-6.21
 ********instalacion de psycopg2***************
 ~:pip install psycopg2
 
-**********************************************
+*********credenciales sistema de inventario*******************
 
 Usuario administrador: jjiatz
 Contraseña: Dj@ngo20.23

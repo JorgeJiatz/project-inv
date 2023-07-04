@@ -11,10 +11,10 @@ class Proveedor(ClaseModelo):
 
     def __str__(self):
         return '{}'.format(self.descripcion)
-    
+
     def save(self):
         self.descripcion = self.descripcion.upper()
         super(Proveedor, self).save()
 
     class Meta:
-        verbose_name_plural="Proveedores"
+        verbose_name_plural = "Proveedores"

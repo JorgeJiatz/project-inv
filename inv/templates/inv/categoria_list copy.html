@@ -46,7 +46,7 @@
                     <td>{{ item.fm|date:"d/m/Y H:i:s" }}</td><!--fecha modificación-->
                     <td>
                         <a href="{% url 'inv:categoria_edit' item.id %}" class="btn btn-warning btn-circle" role="button"><i class="far fa-edit"></i></a>
-                        <a href="{% url 'inv:categoria_del' item.id %}" class="btn btn-danger btn-circle" role="button"><i class="far fa-trash-alt"></i></a>
+                        <a href="{% url 'inv:categoria_del' item.id %}" class="btn btn-danger btn-circle" role="button"><i class="far fa-thumbs-down"></i></a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -54,29 +54,6 @@
         </table>
     </div>
 </div>
-
-<!-- Collapsable Card Example
-<div class="card shadow mb-4">
-    <-- Card Header - Accordion 
-    <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
-        role="button" aria-expanded="true" aria-controls="collapseCardExample">
-        <h6 class="m-0 font-weight-bold text-primary">Collapsable Card Example</h6>
-    </a>
-    <-- Card Content - Collapse 
-    <div class="collapse show" id="collapseCardExample">
-        <div class="card-body">
-            This is a collapsable card example using Bootstrap's built in collapse
-            functionality. <strong>Click on the card header</strong> to see the card body
-            collapse and expand!
-        </div>
-    </div>
-</div>
-
-</div>
-
-</div>
-
-</div> -->
 
 {% endblock %}
 

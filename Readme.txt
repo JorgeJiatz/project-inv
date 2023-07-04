@@ -20,3 +20,9 @@ user.email "jjiatzg@miumg.edu.gt"
 repository name: project-inv
 Description: proyectopg
 
+
+$git add .	-(agregar todos los archivos)
+$git commit -m "comentario"	-(commit con comentario)
+$git push -u origin master	-(subir github)
+
+

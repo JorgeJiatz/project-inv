@@ -6,9 +6,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 import json
 
+from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required, permission_required
 
-from .models import Proveedor
+from .models import Proveedor, ComprasEnc, CompraDet
 from cmp.forms import ProveedorForm
 
 from index.views import sinprivilegios
@@ -19,7 +20,7 @@ class ProveedorView(sinprivilegios, generic.ListView):
     context_object_name = "obj"
     permission_required="cmp.view_proveedor"
 
-class ProveedorNew(sinprivilegios, generic.CreateView):
+class ProveedorNew(SuccessMessageMixin, sinprivilegios, generic.CreateView):
     permission_required = "cmp.add_proveedor"
     model = Proveedor
     template_name = "cmp/proveedor_form.html"
@@ -32,7 +33,7 @@ class ProveedorNew(sinprivilegios, generic.CreateView):
         print(self.request.user.id)
         return super().form_valid(form)
 
-class ProveedorEdit(sinprivilegios, generic.UpdateView):
+class ProveedorEdit(SuccessMessageMixin, sinprivilegios, generic.UpdateView):
     permission_required = "cmp.change_proveedor"
     model=Proveedor
     template_name="cmp/proveedor_form.html"
@@ -66,3 +67,8 @@ def proveedorInactivar(request,id):
 
     return render(request,template_name,contexto)
 
+class ComprasView(sinprivilegios, generic.ListView):
+    model = ComprasEnc
+    template_name = "cmp/compras_list.html"
+    context_object_name = "obj"
+    permission_required="cmp.view_comprasenc"

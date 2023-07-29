@@ -165,7 +165,7 @@ def compras(request, compra_id=None):
             det.save()
 
             sub_total=CompraDet.objects.filter(compra=compra_id).aggregate(Sum('sub_total'))
-            descuento=CompraDet.objects.filter(compra=compra_id).aggregate(Sum('sub_total'))
+            descuento=CompraDet.objects.filter(compra=compra_id).aggregate(Sum('descuento'))
             enc.sub_total = sub_total["sub_total__sum"]
             enc.descuento=descuento["descuento__sum"]
             enc.save()
@@ -173,3 +173,13 @@ def compras(request, compra_id=None):
         return redirect("cmp:compras_edit",compra_id=compra_id)
 
     return render(request, template_name, contexto)
+
+class CompraDetDelet(sinprivilegios, generic.DeleteView):
+    permission_required = "cmp.delete_compradet"
+    model = CompraDet
+    template_name = "cmp/compras_det_del.html"
+    context_object_name = 'obj'
+
+    def get_success_url(self):
+        compra_id = self.kwargs['compra_id']
+        return reverse_lazy('cmp:compras_edit', kwargs={'compra_id': compra_id})

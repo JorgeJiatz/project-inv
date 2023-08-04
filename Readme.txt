@@ -29,5 +29,7 @@ $git status	-(observar los cambios modificados o afectados sin add y commit)
 $git log	-(observar los commit relizados y comentario de cada uno de ellos)
 
 
+************ instalacion para reportes*****************************
 
+~:pip install xhtml2pdf
 

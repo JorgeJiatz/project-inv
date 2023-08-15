@@ -20,7 +20,10 @@
     {% if not obj %}
     <div class="alert alert-info">No hay Clientes</div>
     {% endif %}
-    <table data-toggle="table" data-search="true">
+    <div class="buttons-toolbar">
+      <a class="dropdown-item" onclick="return abrir_modal('{% url 'fac:cliente_new' %}')" href="#"><i class="far fa-calendar-plus"></i> Nuevo</a>
+    </div>
+    <table data-toggle="table" data-search="true" data-toolbar=".buttons-toolbar">
       <thead>
         <th data-sortable="true" data-field="id">Id</th>        
         <th data-sortable="true" data-field="nombres">Nombres</th>
@@ -84,9 +87,5 @@
       }
     });
   }
-
-/*$(document).ready(function() {
-  $('.table').DataTable();
-});*/
 </script>
 {% endblock %}

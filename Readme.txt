@@ -33,3 +33,17 @@ $git log	-(observar los commit relizados y comentario de cada uno de ellos)
 
 ~:pip install xhtml2pdf
 
+************ instalacion modelo usuarios ******************
+
+~:pip install django-userforeignkey
+
+luego agregar al settings.py
+
+INSTALLED_APPS = [
+    'django-userforeignkey'
+]
+
+MIDDLEWARE = [
+    'django_userforeignkey.middleware.UserForeignKeyMiddleware',
+]
+

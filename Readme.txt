@@ -47,3 +47,11 @@ MIDDLEWARE = [
     'django_userforeignkey.middleware.UserForeignKeyMiddleware',
 ]
 
+************ instalacion django rest framework ******************
+~:pip install djangorestframework
+
+luego agregar al settings.py
+
+INSTALLED_APPS = [
+    'rest_framework'
+]

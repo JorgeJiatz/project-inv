@@ -94,7 +94,7 @@ def compras(request, compra_id=None):
                 'fecha_compra':fecha_compra,
                 'proveedor':enc.proveedor,
                 'observacion':enc.observacion,
-                'no_factura':fecha_factura,
+                'no_factura':enc.no_factura,
                 'fecha_factura':fecha_factura,
                 'sub_total':enc.sub_total,
                 'descuento':enc.descuento,

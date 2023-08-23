@@ -6,10 +6,12 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponse
 from datetime import datetime
+from django.contrib import messages
 
 from index.views import sinprivilegios
 
 from .models import Cliente, FacturaEnc, FacturaDet
+from inv.models import Producto
 from .forms import ClienteForm
 import inv.views as inv
 
@@ -105,12 +107,67 @@ def facturas(request,id=None):
             }
 
         detalle=FacturaDet.objects.filter(factura=enc)
+        contexto={"enc":encabezado,"det":detalle,"clientes":clientes}
+        return render(request,template_name,contexto)
 
+    if request.method == "POST":
+        cliente = request.POST.get("enc_cliente")
+        fecha  = request.POST.get("fecha")
+        cli=Cliente.objects.get(pk=cliente)
 
-    contexto={"enc":encabezado,"det":detalle,"clientes":clientes}
+        if not id:
+            enc = FacturaEnc(
+                cliente = cli,
+                fecha = fecha
+            )
+            if enc:
+                enc.save()
+                id = enc.id
+        else:
+            enc = FacturaEnc.objects.filter(pk=id).first()
+            if enc:
+                enc.cliente = cli
+                enc.save()
+
+        if not id:
+            messages.error(request,'No. de Factura no detectado')
+            return redirect("fac:factura_list")
+        
+        codigo = request.POST.get("codigo")
+        cantidad = request.POST.get("cantidad")
+        precio = request.POST.get("precio")
+        s_total = request.POST.get("sub_total_detalle")
+        descuento = request.POST.get("descuento_detalle")
+        total = request.POST.get("total_detalle")
+
+        prod = Producto.objects.get(codigo=codigo)
+        det = FacturaDet(
+            factura = enc,
+            producto = prod,
+            cantidad = cantidad,
+            precio = precio,
+            sub_total = s_total,
+            descuento = descuento,
+            total = total
+        )
+        
+        if det:
+            det.save()
+        
+        return redirect("fac:factura_edit",id=id)
+    
     return render(request, template_name, contexto)
 
 class ProductView(inv.ProductoView):
     template_name="fac/buscar_product.html"
 
+def del_detalle_factura(request, id):
+    template_name = "fac/facturadet_del.html"
+
+    det = FacturaDet.objects.get(pk=id)
+
+    if request.method=="GET":
+        context={"det":det}
+
+    return render(request, template_name, context)   
     

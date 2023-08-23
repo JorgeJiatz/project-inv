@@ -1,6 +1,8 @@
 {% extends 'base/base.html' %}
 
 {% block page_content %}
+<form method="post" id="frmFacturas">
+    {% csrf_token %}
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <a href="#" class="btn btn-danger">Guardar</a>
@@ -152,9 +154,7 @@
                                 <td>{{ item.descuento }}</td>
                                 <td>{{ item.total }}</td>
                             <td>
-                                <button type="button" class="btn btn-warning btn-circle">
-                                    <i class="fas fa-edit"></i>
-                                </button>
+                                <button type="button" class="btn btn-warning btn-circle" onclick="borrar_det({{ item.id }})"><i class="fas fa-trash-alt"></i></button>
                             </td>
                             </tr>
                             {% endfor %}
@@ -166,6 +166,7 @@
         </div>
     </div>
 </div>
+</form>
 {% endblock %}
 {% block js_page %}
 <script>
@@ -274,6 +275,7 @@
 
         $("#codigo").keypress(function(e){
             if(e.keyCode===13){
+                e.preventDefault();
                 buscarProducto();
             }
         });
@@ -285,9 +287,27 @@
         $("#enc_id").val("{{ enc.id }}");
         $("#enc_cliente").val("{{ enc.cliente.id }}").change();
         $("#fecha").val("{{ enc.fecha|date:'d-m-Y' }}");
-        $("#sub_total").val("{{ enc.sub_total }}");
-        $("#descuento").val("{{ enc.descuento }}");
+        $("#sub_total").val({{ enc.sub_total }});
+        $("#descuento").val({{ enc.descuento }});
         $("#total").val({{ enc.total }});
     });
+
+    function borrar_det(id){
+        $.confirm({
+            theme: "modern",
+            icon: "fab fa-keycdn",
+            type: "red",
+            title: "confirmacion requerida",
+            content: 'url:fac/facturas/del_detalle_factura/' + id,
+            onContentReady: function () {
+                var self = this;
+                this.$content.find('#usuario').val('{{ user.username }}');
+                this.$content.find('#usuario').select();
+                this.$content.find('#usuario').focus();
+                
+            },
+        });
+    }
+
 </script>
 {% endblock %}

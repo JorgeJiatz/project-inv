@@ -5,9 +5,9 @@
     {% csrf_token %}
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <a href="#" class="btn btn-danger">Guardar</a>
-        <a href="#" class="btn btn-success" target="_factura">Imprimir</a>
-        <a href="#" class="btn btn-info">Cancelar</a>
+        <a href="#" class="btn btn-info">Guardar</a>
+        <a href="{% url 'fac:factura_imprimir_one' enc.id %}" class="btn btn-success" target="_factura">Imprimir</a>
+        <a href="{% url 'fac:factura_list' %}" class="btn btn-danger">Cancelar</a>
     </div>
     <div class="card-body">
         <div class="content">
@@ -95,6 +95,7 @@
                         <div class="col-lg-1">Cant</div>
                         <div class="col-lg-3">
                             <input type="number" class="form-control" name="cantidad" id="cantidad" placeholder="Cantidad">
+                            <input type="hidden" class="form-control" name="existencia" id="existencia">
                         </div>
                         <div class="col-lg-4">
                             <input type="number" class="form-control" name="precio" id="precio" placeholder="Precio" readonly>
@@ -141,7 +142,6 @@
                             <th data-field="subtotal">S. Total</th>
                             <th data-field="descuento">Des.</th>
                             <th data-field="total">Total</th>
-                            <th class="all">Acciones</th>
                         </thead>
                         <tbody>
                             {% for item in det%}
@@ -153,9 +153,6 @@
                                 <td>{{ item.sub_total }}</td>
                                 <td>{{ item.descuento }}</td>
                                 <td>{{ item.total }}</td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-circle" onclick="borrar_det({{ item.id }})"><i class="fas fa-trash-alt"></i></button>
-                            </td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -292,7 +289,17 @@
         $("#total").val({{ enc.total }});
     });
 
-    function borrar_det(id){
+    $("form").submit(function(e){
+        var existencia = +$("#existencia").val();
+        var cantidad = +$("#cantidad").val();
+
+        if(cantidad>existencia){
+            mensaje("Existencias insuficientes");
+            return false;
+        }
+    })
+
+    /*function borrar_det(id){
         $.confirm({
             theme: "modern",
             icon: "fab fa-keycdn",
@@ -307,7 +314,7 @@
                 
             },
         });
-    }
+    }*/
 
 </script>
 {% endblock %}

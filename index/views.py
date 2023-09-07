@@ -1,6 +1,9 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.shortcuts import render 
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+from django.contrib import messages
+from django.contrib import messages
 
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views import generic
@@ -23,3 +26,19 @@ class Home(LoginRequiredMixin, generic.TemplateView):
 class sinpermisos(LoginRequiredMixin, generic.TemplateView):
     login_url = "base:login"
     template_name="bases/sinpermisos.html"
+
+#reset contraseña
+class CustomPasswordResetView(PasswordResetView):
+    template_name = 'bases/login_reset.html'
+    email_template_name = 'bases/reset_email.html'  # Plantilla de correo electrónico personalizada
+    success_url = '/reset_password_send/'
+
+class CustomPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'bases/reset_done.html'
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = 'bases/reset_confirm.html'
+    success_url = '/reset_password_complete/'  # URL de éxito para el restablecimiento de contraseña
+
+class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = 'bases/reset_complete.html'

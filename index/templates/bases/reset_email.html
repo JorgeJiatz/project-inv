@@ -1,0 +1,16 @@
+{% load i18n %}{% autoescape off %}
+{% block trans %}
+Hola, 32
+
+Recibiste este correo electrónico porque solicitaste restablecer la contraseña para tu cuenta en nuestro sitio web.
+
+Por favor, sigue el siguiente enlace para restablecer tu contraseña:
+
+{{ protocol }}://{{ domain }}{% url 'index:password_reset_confirm' uidb64=uid token=token %}
+
+Si no solicitaste este restablecimiento, ignora este correo electrónico y tu contraseña seguirá siendo la misma.
+
+Gracias.
+El equipo de nuestro sitio web
+{% endblock %}
+{% endautoescape %}

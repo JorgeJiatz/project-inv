@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
-from django.urls import reverse_lazy
-from django.shortcuts import render 
+from django.urls import reverse_lazy 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 from django.contrib import messages
 from django.contrib import messages
@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.views import generic
 
 class sinprivilegios(LoginRequiredMixin, PermissionRequiredMixin):
-    login_url = 'base:login'
+    login_url = 'index:login'
     raise_exception=False
     redirect_field_name="redirecto_to"
 
@@ -24,7 +24,7 @@ class Home(LoginRequiredMixin, generic.TemplateView):
     login_url='index:login'
 
 class sinpermisos(LoginRequiredMixin, generic.TemplateView):
-    login_url = "base:login"
+    login_url = 'index:login'
     template_name="bases/sinpermisos.html"
 
 #reset contraseña

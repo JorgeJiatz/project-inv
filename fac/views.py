@@ -15,6 +15,7 @@ from inv.models import Producto
 from .forms import ClienteForm
 import inv.views as inv
 
+
 class ClienteView(sinprivilegios, generic.ListView):
     model = Cliente
     template_name = "fac/cliente_list.html"
@@ -30,6 +31,7 @@ class VistaBaseCreate(SuccessMessageMixin,sinprivilegios, \
     def form_valid(self, form):
         form.instance.uc = self.request.user
         return super().form_valid(form)
+
 
 class VistaBaseEdit(SuccessMessageMixin,sinprivilegios, \
     generic.UpdateView):
@@ -69,6 +71,7 @@ def clienteInactivar(request,id):
         return HttpResponse("FAIL")
     
     return HttpResponse("FAIL")
+
 
 class FacturaView(sinprivilegios, generic.ListView):
     model = FacturaEnc
@@ -157,6 +160,7 @@ def facturas(request,id=None):
         return redirect("fac:factura_edit",id=id)
     
     return render(request, template_name, contexto)
+
 
 class ProductView(inv.ProductoView):
     template_name="fac/buscar_product.html"

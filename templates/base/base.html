@@ -43,8 +43,8 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'index:home'%}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fa-solid fa-cube"></i>
+                <div class="sidebar-brand-icon">
+                    <i class="fas fa-piggy-bank"></i>
                     <!--<i class="fas fa-laugh-wink"></i>-->
                 </div>
                 <div class="sidebar-brand-text mx-3">Sistema Cárnico</div>
@@ -118,7 +118,19 @@
                     <a class="collapse-item" href="{% url 'fac:factura_list' %}">Facturas</a>
                   </div>
                 </div>
-              </li>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseadmin" aria-expanded="true" aria-controls="collapseadmin">
+                  <i class="fas fa-user"></i>
+                  <span>Administración</span>
+                </a>
+                <div id="collapseadmin" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                  <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{% url 'admin:index' %}">Usuarios</a>
+
+                  </div>
+                </div>
+            </li>
 
 
             <!-- Divider -->
@@ -126,7 +138,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Entradas
+                
             </div>
 
             

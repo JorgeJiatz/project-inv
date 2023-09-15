@@ -1,5 +1,7 @@
 from django.forms.models import BaseModelForm
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.urls import reverse_lazy
@@ -22,6 +24,7 @@ class CategoriaView(sinprivilegios,\
     template_name = "inv/categoria_list.html"
     context_object_name = "obj"
 
+
 class CategoriaNew(SuccessMessageMixin, sinprivilegios, generic.CreateView):
     permission_required = "inv.add_categoria"
     model=Categoria
@@ -34,7 +37,8 @@ class CategoriaNew(SuccessMessageMixin, sinprivilegios, generic.CreateView):
     def form_valid(self, form):
         form.instance.uc = self.request.user
         return super().form_valid(form)
-    
+
+
 class CategoriaEdit(SuccessMessageMixin, sinprivilegios, generic.UpdateView):
     permission_required = "inv.change_categoria"
     model=Categoria
@@ -75,12 +79,14 @@ def categoria_inactivar(request, id):
     #context_object_name='obj'
     #success_url=reverse_lazy("inv:categoria_list")
 
+
 class SubCategoriaView(sinprivilegios,\
                        generic.ListView):
     permission_required="inv.view_subcategoria"
     model = SubCategoria
     template_name = "inv/subcategoria_list.html"
     context_object_name = "obj"
+
 
 class SubCategoriaNew(sinprivilegios, generic.CreateView):
     permission_required = "inv.add_subcategoria"
@@ -93,7 +99,7 @@ class SubCategoriaNew(sinprivilegios, generic.CreateView):
     def form_valid(self, form):
         form.instance.uc = self.request.user
         return super().form_valid(form)
-    
+
 class SubCategoriaEdit(sinprivilegios, generic.UpdateView):
     permission_required = "inv.change_subcategoria"
     model=SubCategoria
@@ -141,7 +147,6 @@ class MarcaView(sinprivilegios,\
     template_name = "inv/marca_list.html"
     context_object_name = "obj"
 
-
 class MarcaNew(sinprivilegios,
                    generic.CreateView):
     model=Marca
@@ -155,7 +160,6 @@ class MarcaNew(sinprivilegios,
     def form_valid(self, form):
         form.instance.uc = self.request.user
         return super().form_valid(form)
-
 
 class MarcaEdit(sinprivilegios,
                    generic.UpdateView):
@@ -201,7 +205,6 @@ class UMView(sinprivilegios, generic.ListView):
     context_object_name = "obj"
     permission_required="inv.view_unidadmedida"
 
-
 class UMNew(sinprivilegios,
                    generic.CreateView):
     model=UnidadMedida
@@ -216,7 +219,6 @@ class UMNew(sinprivilegios,
         form.instance.uc = self.request.user
         print(self.request.user.id)
         return super().form_valid(form)
-
 
 class UMEdit(sinprivilegios,
                    generic.UpdateView):
@@ -259,7 +261,6 @@ class ProductoView(sinprivilegios, generic.ListView):
     context_object_name = "obj"
     permission_required="inv.view_producto"
 
-
 class ProductoNew(sinprivilegios,
                    generic.CreateView):
     model=Producto
@@ -279,7 +280,6 @@ class ProductoNew(sinprivilegios,
     #    context["categorias"] = Categoria.objects.all()
     #    context["subcategorias"] = SubCategoria.objects.all()
     #    return context
-
 
 
 class ProductoEdit(sinprivilegios,

@@ -5,8 +5,11 @@ from index.views import Home, sinpermisos, CustomPasswordResetView, CustomPasswo
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
-    path('login/',auth_views.LoginView.as_view(template_name='bases/login.html'),name='login'),
-    path('logout/',auth_views.LogoutView.as_view(template_name='bases/login.html'),name='logout'),
+    path('login/',auth_views.LoginView.as_view(template_name='bases/login.html'),
+        name='login'),
+    path('logout/',
+         auth_views.LogoutView.as_view(template_name='bases/login.html'),
+         name='logout'),
     path('sin_privilegios/',sinpermisos.as_view(),name='sin_privilegios'),
 
     path('reset_password/', CustomPasswordResetView.as_view(), name='password_reset'),

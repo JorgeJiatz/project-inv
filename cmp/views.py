@@ -7,6 +7,7 @@ from django.http import HttpResponse
 import json
 from django.db.models import Sum
 
+
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required, permission_required
 

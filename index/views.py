@@ -2,11 +2,15 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
-from django.contrib import messages
-from django.contrib import messages
+from django.shortcuts import render
+from datetime import datetime, timedelta
 
+from pathlib import Path
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views import generic
+from inv.models import Producto, Marca, SubCategoria
+from cmp.models import Proveedor
+from fac.models import Cliente, FacturaEnc
 
 class sinprivilegios(LoginRequiredMixin, PermissionRequiredMixin):
     login_url = 'index:login'
@@ -42,3 +46,25 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
 
 class CustomPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = 'bases/reset_complete.html'
+
+@login_required(login_url='/login/')
+def dashboard(request):
+    total_productos = Producto.objects.count()
+    cantidad_proveedores = Proveedor.objects.count()
+    total_clientes = Cliente.objects.count()
+    total_marca = Marca.objects.count()
+    total_subcategoria = SubCategoria.objects.count()
+    fecha_limite = datetime.now() - timedelta(days=30)
+    total_fac = FacturaEnc.objects.filter(fecha__gte=fecha_limite).count()
+
+    context = {
+        'total_productos': total_productos,
+        'cantidad_proveedores': cantidad_proveedores,
+        'total_clientes': total_clientes,
+        'total_marca': total_marca,
+        'total_subcategoria':total_subcategoria,
+        'total_fac': total_fac
+    }
+
+    return render(request,'bases/home.html',context)
+

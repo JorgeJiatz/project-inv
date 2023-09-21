@@ -49,19 +49,20 @@ class ProveedorEdit(SuccessMessageMixin, sinprivilegios, generic.UpdateView):
         return super().form_valid(form)
 
 @login_required(login_url='/login/')
-@permission_required('cmp.change_proveedor', login_url='index:sin_privilegios')
+@permission_required('cmp.change_proveedor', login_url='bases:sin_privilegios')
+#se cambia 'index:sin_privilegios' por '/login/' 
 def proveedorInactivar(request,id):
-    template_name="cmp/inactivar_prv.html"
+    template_name='cmp/inactivar_prv.html'
     contexto={}
     prv = Proveedor.objects.filter(pk=id).first()
 
     if not prv:
         return HttpResponse('Proveedor no existe ' + str(id))
-    
-    if request.method == 'GET':
+
+    if request.method=='GET':
         contexto={'obj':prv}
-    
-    if request.method == 'POST':
+
+    if request.method=='POST':
         prv.estado=False
         prv.save()
         contexto={'obj':'OK'}

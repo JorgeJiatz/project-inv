@@ -1,0 +1,65 @@
+<DocElectronico>
+<Encabezado>
+<Receptor>
+ <NITReceptor>ABC123</NITReceptor>
+<Nombre>NOMBRE COMPRADOR</Nombre> -- Incluido por ser Tipo Pasaporte
+<Direccion>DIRECCION COMPRADOR</Direccion> -- Incluido por ser Tipo Pasaporte
+</Receptor>
+<InfoDoc>
+<TipoVenta>B</TipoVenta>
+<DestinoVenta>1</DestinoVenta>
+<Fecha>15/09/2023</Fecha>
+<Moneda>1</Moneda>
+<Tasa>1</Tasa>
+</InfoDoc>
+<Totales>
+<Bruto>8236</Bruto>
+<Descuento>0</Descuento>
+<Exento>0</Exento>
+<Otros>0</Otros>
+<Neto>7353.58</Neto>
+<Isr>0</Isr>
+<Iva>882.44</Iva>
+<Total>8236</Total>
+</Totales>
+<DatosAdicionales>
+ <TipoReceptor>3</TipoReceptor>
+</DatosAdicionales>
+</Encabezado>
+<Detalles>
+<Productos>
+<Producto>100</Producto>
+<Descripcion>SOPAS DE CAMARON</Descripcion>
+<Medida>1</Medida>
+<Cantidad>100</Cantidad>
+<Precio>25.36</Precio>
+<PorcDesc>0</PorcDesc>
+<ImpBruto>2536</ImpBruto>
+<ImpDescuento>0</ImpDescuento>
+<ImpExento>0</ImpExento>
+<ImpOtros>0</ImpOtros>
+<ImpNeto>2264.29</ImpNeto>
+<ImpIsr>0</ImpIsr>
+<ImpIva>271.71</ImpIva>
+<ImpTotal>2536</ImpTotal>
+ <TipoVentaDet>B</TipoVentaDet>
+</Productos>
+<Productos>
+<Producto>200</Producto>
+<Descripcion>SOPAS DE POLLO</Descripcion>
+<Medida>1</Medida>
+<Cantidad>200</Cantidad>
+<Precio>28.50</Precio>
+<PorcDesc>0</PorcDesc>
+<ImpBruto>5700</ImpBruto>
+<ImpDescuento>0</ImpDescuento>
+<ImpExento>0</ImpExento>
+<ImpOtros>0</ImpOtros>
+<ImpNeto>5089.29</ImpNeto>
+<ImpIsr>0</ImpIsr>
+<ImpIva>610.71</ImpIva>
+<ImpTotal>5700</ImpTotal>
+ <TipoVentaDet>B</TipoVentaDet>
+</Productos>
+</Detalles>
+</DocElectronico>

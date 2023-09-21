@@ -10,7 +10,11 @@ from inv.models import Producto
 class Cliente(ClaseModelo):
     nombres = models.CharField(max_length=100)
     apellidos = models.CharField(max_length=100)
+    nit = models.CharField(max_length=20, null=True, blank=True)
+    direccion = models.CharField(max_length=200, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
     celular = models.CharField(max_length=20, null=True, blank=True)
+
 
     def __str__(self):
         return '{} {}'.format(self.apellidos, self.nombres)

@@ -1,2 +1,177 @@
 {% extends 'base/base.html' %}
+{% load static %} 
+{% block style %}
+<style>
+    div.galeria{
+        margin: 10px 20px;
+        box-shadow: 0 4px 8px 0 lightskyblue, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        float: left;
+        width: 250px;
+    }
 
+    div.galeria img{
+        width: 100%;
+        height: auto;
+    }
+    div.galeria:hover{
+        border: 1px solid lightcoral;
+        transform: rotate(-3deg);
+    }
+</style>
+{% endblock style %}
+{% block page_content %}
+<div class="container-fluid">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800 Times-New-Roman" font-family="Times New Roman">Dashboard</h1>
+        
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Productos</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_productos}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-boxes fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Proveedores</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{cantidad_proveedores}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-truck fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                Clientes</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_clientes}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-users fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Marcas Proveedore</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_marca}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-bookmark fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                SubCartegoria Prod</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_subcategoria}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-shapes fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Facturas Mensual</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_fac}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-file-alt fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+            <div class="card shadowv mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <div class="galeria">
+                            <div class="foto">
+                                <img src="{% static 'base/img/ganado1.jpg' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="galeria">
+                            <div class="foto">
+                                <img src="{% static 'base/img/ganado2.jpg' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="galeria">
+                            <div class="foto">
+                                <img src="{% static 'base/img/ganado3.jpg' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="galeria">
+                            <div class="foto">
+                                <img src="{% static 'base/img/ganado4.jpg' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <!--<p>Add some quality, svg illustrations to your project courtesy of <a
+                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
+                        constantly updated collection of beautiful svg images that you can use
+                        completely free and without attribution!</p>
+                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
+                        unDraw &rarr;</a>-->
+                </div>
+            </div>
+    </div>
+
+</div>
+
+{% endblock %}           

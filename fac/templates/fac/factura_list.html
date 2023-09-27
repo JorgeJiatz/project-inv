@@ -22,21 +22,22 @@
       <thead>
         <th data-sortable="true" data-field="id">No.</th>        
         <th data-sortable="true" data-field="nombres">Cliente</th>
+        <th data-sortable="true" data-field="nit">NIT</th>
         <th data-sortable="true" data-field="apellidos">Total</th>
         <!--<th data-field="estado">Estado</th>-->
-        <th class="all">Acciones</th>
+        <th class="all">Imprimir Factura</th>
       </thead>
       <tbody>
         {% for item in obj %}
         <tr>
           <td>{{ item.id }}</td>
           <td>{{ item.cliente }}</td>
+          <td>{{ item.nit }}</td>
           <td>{{ item.total }}</td>
           <!--<td>{{item.estado|yesno:"Activo,Inactivo"}}</td>-->
           <td>
             <div>
-                <a href="{% url 'fac:factura_edit' item.id %}" class="href btn btn-warning btn-circle">
-                    <i class="far fa-edit"></i>
+              <a class="btn btn-success btn-circle" href="{% url 'fac:factura_imprimir_one' item.id %}" target="reportes"><i class="fas fa-print"></i></a>
                 </a>
             </div>
           </td>

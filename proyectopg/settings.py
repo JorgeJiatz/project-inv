@@ -85,9 +85,9 @@ WSGI_APPLICATION = 'proyectopg.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Carnico',
+        'NAME': 'carnico2',
         'USER': 'postgres',
-        'PASSWORD': 'System',
+        'PASSWORD': 'Banco+2021',
         'HOST': 'localhost',
         'PORT': '5432'
     }
@@ -134,6 +134,9 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

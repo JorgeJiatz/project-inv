@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura</title>
+</head>
+<body>
+    
+    <table style="text-align: left;font-size: 14px;">
+        <tr>
+            <td ><strong>Carnicera los Ángeles</strong></td>
+            
+        </tr>
+        <tr>
+            <td >Direccion</td>
+        </tr>
+    </table>
+    <table>
+        <tr><td>
+            <p style="margin: 0;padding: 0;font-size: 12px;">Factura NO. {{numero}}</p>
+        </td></tr>
+        <tr>
+            <td>
+                <p style="margin: 0;padding: 0;font-size: 12px;">Serie NO. {{serie}}</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p style="margin: 0;padding: 0;font-size: 12px;">Fecha. {{fecha}}</p>
+            </td>
+        </tr>
+    </table>
+    <table >
+        <tr>
+            <td>
+                <p style="margin: 0;padding: 0;font-size: 12px;"><strong>Autorización</strong></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p style="margin: 0;padding: 0;font-size: 12px;">{{numeroAutorizacionFact}}</p>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td style="margin: 0;padding: 0;font-size: 12px;"><Strong>Nombre Cliente {{nombreFact}}</Strong></td>
+        </tr>
+        <tr>
+            <td style="margin: 0;padding: 0;font-size: 12px;"><strong>Nit Cliente {{nit}}</strong></td>
+        </tr>
+    </table>
+</body>
+</html>

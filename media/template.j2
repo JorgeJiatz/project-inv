@@ -1,0 +1,51 @@
+<DocElectronico>
+	<Encabezado>
+		<Receptor>
+			<NITReceptor>{{nit}}</NITReceptor>
+			<Nombre>{{nombre}}</Nombre>
+			<Direccion>{{direccion}}</Direccion>
+		</Receptor>
+		<InfoDoc>
+			<TipoVenta>B</TipoVenta>
+			<DestinoVenta>1</DestinoVenta>
+			<Fecha>{{fecha}}</Fecha>
+			<Moneda>1</Moneda>
+			<Tasa>1</Tasa>
+			<Referencia>{{referencia}}</Referencia>
+			<NumeroAcceso/>
+			<SerieAdmin>SRV</SerieAdmin>
+			<NumeroAdmin>4708</NumeroAdmin>
+		</InfoDoc>
+		<Totales>
+			<Bruto>{{impBruto}}</Bruto>
+			<Descuento>{{descuento}}</Descuento>
+			<Exento>0.00</Exento>
+			<Otros>0.00</Otros>
+			<Neto>{{totalImpNeto}}</Neto>
+			<Isr>0.00</Isr>
+			<Iva>{{totalIva}}</Iva>
+			<Total>{{total}}</Total>
+		</Totales>
+	</Encabezado>
+	<Detalles>
+		{% for item in detalle %}
+          <Productos>
+			<Producto>{{item.codigo}}</Producto>
+			<Descripcion>{{ item.descripcion}}</Descripcion>
+			<Medida>1</Medida>
+			<Cantidad>{{item.cantidad}}</Cantidad>
+			<Precio>{{item.precio}}</Precio>
+			<PorcDesc>{{ item.porDescuento }}</PorcDesc>
+			<ImpBruto>{{ item.sub_total }}</ImpBruto>
+			<ImpDescuento>{{ item.descuento_detalle }}</ImpDescuento>
+			<ImpExento>0.00</ImpExento>
+			<ImpOtros>0.00</ImpOtros>
+			<ImpNeto>{{item.ImpNeto}}</ImpNeto>
+			<ImpIsr>0</ImpIsr>
+			<ImpIva>{{item.iva}}</ImpIva>
+			<ImpTotal>{{item.total}}</ImpTotal>
+			<TipoVentaDet>B</TipoVentaDet>
+		  </Productos>
+		{% endfor %}
+	</Detalles>
+</DocElectronico>

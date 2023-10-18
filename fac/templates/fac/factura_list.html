@@ -2,6 +2,7 @@
 
 {% block page_content %}
 <div class="card shadow mb-4">
+  {% csrf_token %}
   <!-- Card Header - Dropdown -->
   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
     <h6 class="m-0 font-weight-bold text-primary">Listado de Facturas</h6>
@@ -35,9 +36,16 @@
           <!--<td>{{item.estado|yesno:"Activo,Inactivo"}}</td>-->
           <td>
             <div>
-                <a href="{% url 'fac:factura_edit' item.id %}" class="href btn btn-warning btn-circle">
-                    <i class="far fa-edit"></i>
-                </a>
+              {% if item.estado_fel == 'F' %}
+                <a id_fact ="{{ item.id }}" onclick="verFactura({{ item.id }});"  id="id_fact" class="href btn btn-danger btn-circle" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ver Factura"><i class="fas fa-file-invoice"></i></a>
+
+                {% else %}
+                <a href="{% url 'fac:factura_edit' item.id %}" class="href btn btn-warning btn-circle" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Editar Fact">
+                  <i class="far fa-edit"></i>
+              </a>
+                {% endif %}
+                
+                
             </div>
           </td>
         </tr>
@@ -49,6 +57,38 @@
 {% endblock %}
 {% block js_page %}
 <script>
+  
+  
+  function verFactura(id) {
+       
+            let formData = new FormData();
+            const token = document.querySelector('input[name="csrfmiddlewaretoken"]');
+            formData.append('id', id)
+          
+            fetch("{% url 'fac:ver_factura' %}", {
+                method: "POST",
+                body: formData,
+                headers: { "X-CSRFToken": token.value },
+            })
+                .then((response) => response.json())
+                .then((data) => {
+
+                    if (data.flag) {
+                        let pdfContenido = atob(data.Facturapdf);
+                        let blob = new Blob([pdfContenido], { type: 'application/pdf' });
+                        let url = URL.createObjectURL(blob)
+                        window.open(url, '_blank');
+                    } else {
+
+                        mensaje(data.mensaje, 'red');
+                    }
+
+                })
+                .catch((error) => {
+                    mensaje(error, 'red');
+                });
+        }
+
   
 </script>
 {% endblock %}

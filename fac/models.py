@@ -30,10 +30,18 @@ class Cliente(ClaseModelo):
 
 class FacturaEnc(ClaseModelo2):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    nit_factura = models.CharField(max_length=30,null=True)
+    nombre_factura = models.CharField(max_length=300,null=True)
+    direccion_factura = models.CharField(max_length=300,null=True)
+    serie_factura = models.CharField(max_length=50,null=True)
+    numero_factura = models.CharField(max_length=50,null=True)
+    numero_interno = models.CharField(max_length=50,null=True)
+    numero_autorizacion = models.CharField(max_length=100,null=True)
     fecha = models.DateTimeField(auto_now_add=True)
     sub_total=models.FloatField(default=0)
     descuento=models.FloatField(default=0)
     total=models.FloatField(default=0)
+    estado_fel = models.CharField(max_length=5,null=True)
 
     def __str__(self):
         return '{}'.format(self.id)
